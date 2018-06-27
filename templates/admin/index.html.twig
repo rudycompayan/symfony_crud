@@ -1,0 +1,178 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello Rudy!{% endblock %}
+
+{% block body %}
+    <div class="page">
+        <div class="page-main">
+            <div class="header py-4">
+                <div class="container">
+                    <div class="d-flex">
+                        <a class="header-brand" href="">
+                            <span style="text-transform: uppercase">Student Enrollment System</span>
+                        </a>
+                        <div class="d-flex order-lg-2 ml-auto">
+                            <div class="dropdown">
+                                <a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
+                                    <span class="avatar" style="background-image: url({{ asset('demo/faces/male/25.jpg') }})"></span>
+                                    <span class="ml-2 d-none d-lg-block">
+                      <span class="text-default">Rudy Compayan</span>
+                      <small class="text-muted d-block mt-1">Administrator</small>
+                    </span>
+                                </a>
+                            </div>
+                        </div>
+                        <a href="#" class="header-toggler d-lg-none ml-3 ml-lg-0" data-toggle="collapse" data-target="#headerMenuCollapse">
+                            <span class="header-toggler-icon"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="header collapse d-lg-flex p-0" id="headerMenuCollapse">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-3 ml-auto">
+                            <!--form class="input-icon my-3 my-lg-0">
+                                <input type="search" class="form-control header-search" placeholder="Search&hellip;" tabindex="1">
+                                <div class="input-icon-addon">
+                                    <i class="fe fe-search"></i>
+                                </div>
+                            </form-->
+                        </div>
+                        <div class="col-lg order-lg-first">
+                            <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
+                                <li class="nav-item">
+                                    <a href="/" class="nav-link active"><i class="fe fe-home"></i> Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/students" class="nav-link" data-toggle="dropdown"><i class="fe fe-box"></i> Students</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="my-3 my-md-5">
+                <div class="container">
+                    <div class="page-header">
+                        <h1 class="page-title">
+                            Dashboard
+                        </h1>
+                    </div>
+                    <div class="row row-cards">
+                        <div class="col-6 col-sm-4 col-lg-3">
+                            <div class="card">
+                                <div class="card-body p-3 text-center">
+                                    <div class="text-right text-green">
+                                        306%
+                                        <i class="fe fe-chevron-up"></i>
+                                    </div>
+                                    <div class="h1 m-0">{{ students_all|length }}</div>
+                                    <div class="text-muted mb-4">Students</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-sm-4 col-lg-3">
+                            <div class="card">
+                                <div class="card-body p-3 text-center">
+                                    <div class="text-right text-green">
+                                        103% (Sample data only)
+                                        <i class="fe fe-chevron-up"></i>
+                                    </div>
+                                    <div class="h1 m-0">107</div>
+                                    <div class="text-muted mb-4">Course</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-sm-4 col-lg-3">
+                            <div class="card">
+                                <div class="card-body p-3 text-center">
+                                    <div class="text-right text-green">
+                                        198% (Sample data only)
+                                        <i class="fe fe-chevron-up"></i>
+                                    </div>
+                                    <div class="h1 m-0">327</div>
+                                    <div class="text-muted mb-4">Blocks</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-sm-4 col-lg-3">
+                            <div class="card">
+                                <div class="card-body p-3 text-center">
+                                    <div class="text-right text-red">
+                                        30% (Sample data only)
+                                        <i class="fe fe-chevron-down"></i>
+                                    </div>
+                                    <div class="h1 m-0">238</div>
+                                    <div class="text-muted mb-4">Instructors</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Newly Enrolled Students</h3>
+                                </div>
+                                <div class="table-responsive">
+                                    <table id="students" class="table card-table table-striped table-vcenter">
+                                        <thead>
+                                        <tr>
+                                            <th colspan="2">Student Name</th>
+                                            <th>Course</th>
+                                            <th>Block</th>
+                                            <th></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for student in students %}
+                                        <tr>
+                                            <td class="w-1"><span class="avatar">{{ student.id }}</span></td>
+                                            <td>{{ student.name }}</td>
+                                            <td>{{ student.course }}</td>
+                                            <td class="text-nowrap">{{ student.block }}</td>
+                                            <td class="w-1"><a href="javascript:void(0)" data-id="{{ student.id }}" class="btn btn-secondary delete"><i class="fe fe-trash-2 delete" data-id="{{ student.id }}"></i></a></td>
+                                        </tr>
+                                        {% endfor %}
+                                        {% if students_all is not empty and (students_all|length) > 3 %}
+                                        <tr>
+                                            <td colspan="5" class="w-1"><a href="/students">Show all students ..</a></td>
+                                        </tr>
+                                        {% endif %}
+                                        {% if students_all is empty %}
+                                            <tr>
+                                                <td colspan="5" class="w-1" align="center">No records found.</td>
+                                            </tr>
+                                        {% endif %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="footer">
+            <div class="container">
+                <div class="row align-items-center flex-row-reverse">
+                    <div class="col-auto ml-lg-auto">
+                        <div class="row align-items-center">
+                            <div class="col-auto">
+                                <ul class="list-inline list-inline-dots mb-0">
+                                    <li class="list-inline-item"><a href="">Documentation</a></li>
+                                    <li class="list-inline-item"><a href="">FAQ</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-auto mt-3 mt-lg-0 text-center">
+                        Copyright © 2018 <a href=".">Rudy</a>. All rights reserved.
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('/js/main.js') }}"></script>
+{% endblock %}

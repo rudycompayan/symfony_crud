@@ -1,0 +1,37 @@
+#Admin Dashboard Route
+admin:
+    path: /
+    controller: App\Controller\AdminController::index
+    methods:  [GET]
+
+#Student Routes
+students:
+    path: /students
+    controller: App\Controller\StudentController::students
+    methods:  [GET]
+
+add_student:
+    path: /students/add
+    controller: App\Controller\StudentController::add
+    methods:  [GET]
+
+edit_student:
+    path: /students/edit/{id}
+    controller: App\Controller\StudentController::edit
+    methods:  [GET]
+
+save_student:
+    path: /students/save
+    controller: App\Controller\StudentController::save
+    methods:  [POST]
+
+update_student:
+    path: /students/update
+    controller: App\Controller\StudentController::update
+    methods:  [POST]
+
+delete_student:
+    path: /students/delete/{id}
+    controller: App\Controller\StudentController::delete
+    methods:  [DELETE]
+
